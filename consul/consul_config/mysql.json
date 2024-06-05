@@ -1,0 +1,15 @@
+{
+  "Services": [
+    {
+      "ID": "",
+      "Name": "mysqld_exporter",
+      "Address": "172.16.0.180",
+      "Port": 9104,
+      "Tags": ["mysqld_exporter"],
+      "Checks": [{
+        "HTTP": "http://172.16.0.180:9104/metrics",
+        "Interval": "5s"
+      }]
+    }
+  ]
+}

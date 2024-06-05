@@ -1,0 +1,15 @@
+{
+  "Services": [
+    {
+      "ID": "",
+      "Name": "grafana",
+      "Address": "172.16.0.180",
+      "Port": 3000,
+      "Tags": ["grafana"],
+      "Checks": [{
+        "HTTP": "http://172.16.0.180:3000/metrics",
+        "Interval": "5s"
+      }]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "Services": [
+    {
+      "ID": "",
+      "Name": "node_exporter",
+      "Address": "172.16.0.180",
+      "Port": 9100,
+      "Tags": ["node_exporter"],
+      "Checks": [{
+        "HTTP": "http://172.16.0.180:9100/metrics",
+        "Interval": "5s"
+      }]
+    }
+  ]
+}
