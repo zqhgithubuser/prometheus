@@ -1,0 +1,18 @@
+[Unit]
+Description=Node Exporter
+Documentation=https://prometheus.io/docs/guides/node-exporter/
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+Restart=always
+ExecStart=/usr/local/node_exporter/node_exporter \
+    --collector.mountstats \
+    --collector.systemd \
+    --collector.ethtool \
+    --collector.tcpstat
+
+[Install]
+WantedBy=multi-user.target
