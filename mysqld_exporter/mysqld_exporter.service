@@ -1,0 +1,14 @@
+[Unit]
+Description=MySQL Exporter
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+Restart=always
+ExecStart=/usr/local/mysqld_exporter/mysqld_exporter \
+    --config.my-cnf="/usr/local/mysqld_exporter/.my.cnf"
+
+[Install]
+WantedBy=multi-user.target
