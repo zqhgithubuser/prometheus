@@ -1,0 +1,14 @@
+[Unit]
+Description=Process Exporter
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+Restart=always
+ExecStart=/usr/local/process-exporter/process_exporter \
+    --config.path="/usr/local/process-exporter/process-exporter.yml"
+
+[Install]
+WantedBy=multi-user.target
