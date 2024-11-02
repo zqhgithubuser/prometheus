@@ -1,0 +1,13 @@
+[Unit]
+Description=Blackbox Exporter
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+Restart=always
+ExecStart=/usr/local/redis_exporter/redis_exporter
+
+[Install]
+WantedBy=multi-user.target
