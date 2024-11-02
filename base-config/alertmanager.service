@@ -1,0 +1,17 @@
+[Unit]
+Description=AlertManager
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+ExecStart=/usr/local/alertmanager/alertmanager \
+    --config.file="/usr/local/alertmanager/alertmanager.yml" \
+    --storage.path="/usr/local/alertmanager/data/" \
+    --data.retention=120h \
+    --log.level=info
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

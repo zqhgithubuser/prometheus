@@ -20,7 +20,7 @@ scrape_configs:
   - job_name: node
     static_configs:
       - targets:
-          - 'localhost:9100'
+          - '172.16.0.180:9100'
 
   - job_name: blackbox_exporter
     static_configs:
@@ -77,9 +77,28 @@ scrape_configs:
   - job_name: mysqld_exporter
     static_configs:
       - targets:
-        - 172.16.0.180:9104
+          - '172.16.0.180:9104'
 
   - job_name: process-exporter
     static_configs:
       - targets:
-        - 172.16.0.180:9256
+          - '172.16.0.180:9256'
+
+  - job_name: redis_exporter
+    static_configs:
+      - targets:
+          - 'redis://172.16.0.180:6379'
+    metrics_path: /scrape
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: '172.16.0.180:9121'
+
+  - job_name: pushgateway
+    honor_labels: true  # 不覆盖批处理作业的原标签
+    static_configs:
+      - targets:
+          - 'localhost:9091'
