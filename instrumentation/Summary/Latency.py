@@ -1,7 +1,6 @@
 import http.server
-import time
-from prometheus_client import start_http_server
-from prometheus_client import Summary
+
+from prometheus_client import Summary, start_http_server
 
 LATENCY = Summary("hello_world_latency_seconds", "Time for a request Hello World.")
 

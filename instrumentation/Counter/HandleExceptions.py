@@ -1,7 +1,7 @@
 import http.server
 import random
-from prometheus_client import start_http_server
-from prometheus_client import Counter
+
+from prometheus_client import Counter, start_http_server
 
 REQUESTS = Counter("hello_worlds_total", "Hello Worlds requested.")
 EXCEPTIONS = Counter("hello_world_exceptions_total", "Exceptions serving Hello World.")

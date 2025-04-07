@@ -1,6 +1,6 @@
 import http.server
-from prometheus_client import start_http_server
-from prometheus_client import Histogram
+
+from prometheus_client import Histogram, start_http_server
 
 LATENCY = Histogram(
     "hello_world_latency_seconds",

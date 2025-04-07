@@ -1,4 +1,5 @@
 import random
+
 from prometheus_client import Counter
 
 REQUESTS = Counter("hello_worlds_total", "Hello Worlds requested.")
