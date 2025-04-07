@@ -1,6 +1,6 @@
 [Unit]
-Description=Prometheus
-Documentation=https://prometheus.io/
+Description=Prometheus Monitoring System
+Documentation=https://prometheus.io/docs/introduction/overview/
 After=network-online.target
 
 [Service]
@@ -14,7 +14,8 @@ ExecStart=/usr/local/prometheus/prometheus \
     --storage.tsdb.retention.time=30d \
     --web.console.templates=/usr/local/prometheus/consoles \
     --web.console.libraries=/usr/local/prometheus/console_libraries \
-    --web.enable-lifecycle
+    --web.enable-lifecycle \
+    --log.level=info
 ExecReload=/bin/kill -HUP $MAINPID
 LimitNOFILE=655350
 

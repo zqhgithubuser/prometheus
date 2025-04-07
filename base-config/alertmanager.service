@@ -1,5 +1,6 @@
 [Unit]
-Description=AlertManager
+Description=Alertmanager for Prometheus
+Documentation=https://prometheus.io/docs/alerting/latest/alertmanager/
 After=network-online.target
 
 [Service]
@@ -10,8 +11,10 @@ ExecStart=/usr/local/alertmanager/alertmanager \
     --config.file="/usr/local/alertmanager/alertmanager.yml" \
     --storage.path="/usr/local/alertmanager/data/" \
     --data.retention=120h \
-    --log.level=info
+    --log.level=info \
+    --web.enable-lifecycle
 ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
