@@ -1,5 +1,5 @@
 [Unit]
-Description=Blackbox Exporter
+Description=Redis Exporter
 After=network-online.target
 
 [Service]
