@@ -1,16 +1,13 @@
 global:
   scrape_interval: 10s
   evaluation_interval: 15s
-
 alerting:
   alertmanagers:
     - static_configs:
         - targets:
             - 'localhost:9093'
-
 rule_files:
   - rules.yml
-
 scrape_configs:
   - job_name: prometheus
     static_configs:
@@ -30,15 +27,18 @@ scrape_configs:
   - job_name: blackbox-http
     metrics_path: /probe
     params:
-      module: [http_2xx]
+      module:
+        - http_2xx
     static_configs:
       - targets:
           - 'https://www.baidu.com'
           - 'https://prometheus.io'
     relabel_configs:
-      - source_labels: [__address__]
+      - source_labels:
+          - __address__
         target_label: __param_target
-      - source_labels: [__param_target]
+      - source_labels:
+          - __param_target
         target_label: instance
       - target_label: __address__
         replacement: '127.0.0.1:9115'
@@ -46,14 +46,17 @@ scrape_configs:
   - job_name: blackbox-ssh
     metrics_path: /probe
     params:
-      module: [ssh_banner]
+      module:
+        - ssh_banner
     static_configs:
       - targets:
           - '172.16.0.180:22'
     relabel_configs:
-      - source_labels: [__address__]
+      - source_labels:
+          - __address__
         target_label: __param_target
-      - source_labels: [__param_target]
+      - source_labels:
+          - __param_target
         target_label: instance
       - target_label: __address__
         replacement: '127.0.0.1:9115'
@@ -61,15 +64,18 @@ scrape_configs:
   - job_name: blackbox-icmp
     metrics_path: /probe
     params:
-      module: [icmp]
+      module:
+        - icmp
     static_configs:
       - targets:
-          - 'www.baidu.com'
-          - '172.16.0.180'
+          - www.baidu.com
+          - 172.16.0.180
     relabel_configs:
-      - source_labels: [__address__]
+      - source_labels:
+          - __address__
         target_label: __param_target
-      - source_labels: [__param_target]
+      - source_labels:
+          - __param_target
         target_label: instance
       - target_label: __address__
         replacement: '127.0.0.1:9115'
@@ -90,15 +96,17 @@ scrape_configs:
           - 'redis://172.16.0.180:6379'
     metrics_path: /scrape
     relabel_configs:
-      - source_labels: [__address__]
+      - source_labels:
+          - __address__
         target_label: __param_target
-      - source_labels: [__param_target]
+      - source_labels:
+          - __param_target
         target_label: instance
       - target_label: __address__
         replacement: '172.16.0.180:9121'
 
   - job_name: pushgateway
-    honor_labels: true  # 不覆盖批处理作业的原标签
+    honor_labels: true
     static_configs:
       - targets:
           - 'localhost:9091'

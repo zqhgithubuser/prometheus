@@ -1,17 +1,16 @@
 networks:
   monitoring:
     driver: bridge
-
 services:
   node-exporter:
-    image: prom/node-exporter:v1.8.0
+    image: 'prom/node-exporter:v1.8.0'
     volumes:
-      - /:/host:ro,rslave
+      - '/:/host:ro,rslave'
     command:
-      - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+)($|/)
-      - --path.rootfs=/host
+      - '--collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+)($|/)'
+      - '--path.rootfs=/host'
     ports:
-      - 9111:9100
+      - '9111:9100'
     networks:
       - monitoring
     restart: always

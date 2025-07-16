@@ -1,13 +1,11 @@
 volumes:
-    tomcat_webapps: {}
-
+  tomcat_webapps: {}
 networks:
   monitoring:
     driver: bridge
     ipam:
       config:
         - subnet: 172.31.2.0/24
-
 services:
   tomcat:
     build:
@@ -17,10 +15,10 @@ services:
     expose:
       - 8080
     ports:
-      - 8080:8080
+      - '8080:8080'
     volumes:
-      - tomcat_webapps:/usr/local/tomcat/webapps
-      - ./tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+      - 'tomcat_webapps:/usr/local/tomcat/webapps'
+      - './tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml'
     networks:
       - monitoring
     environment:

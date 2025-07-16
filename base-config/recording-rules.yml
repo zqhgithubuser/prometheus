@@ -1,17 +1,18 @@
 groups:
   - name: node_filesystem
     rules:
-      - record: job_mountpoint:node_filesystem_avail_bytes:sum
+      - record: 'job_mountpoint:node_filesystem_avail_bytes:sum'
         expr: |
           sum without (fstype, device) (
             node_filesystem_avail_bytes
           )
-      - record: job_mountpoint:node_filesystem_size_bytes:sum
+      - record: 'job_mountpoint:node_filesystem_size_bytes:sum'
         expr: |
           sum without (fstype, device) (
             node_filesystem_size_bytes
           )
-      - record: job_mountpoint:node_filesystem_avail_bytes_per_node_filesystem_size_bytes:ratio
+      - record: >-
+          job_mountpoint:node_filesystem_avail_bytes_per_node_filesystem_size_bytes:ratio
         expr: |
           (
               job_mountpoint:node_filesystem_avail_bytes:sum{job="node"}

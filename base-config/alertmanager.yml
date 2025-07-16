@@ -1,17 +1,15 @@
 global:
   resolve_timeout: 5m
-
 route:
   group_by:
     - alertname
   receiver: example-email
-
 receivers:
   - name: example-email
     email_configs:
       - to: 15815085647@163.com
         from: 15815085647@163.com
-        smarthost: smtp.163.com:465
+        smarthost: 'smtp.163.com:465'
         auth_username: 15815085647@163.com
-        auth_password: ""
+        auth_password: ''
         require_tls: false
